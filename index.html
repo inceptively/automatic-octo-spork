@@ -28,7 +28,6 @@
         .chrome {
             background: linear-gradient(45deg, rgba(87, 132, 172, 0.4), rgba(174, 212, 212, 0.5)); /* Off Blue, Icy Morn */
             backdrop-filter: blur(10px);
-            border: 1px solid #32495d; /* Dilly Blue */
             box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.6); /* Shiny reflection */
         }
         .glossy-btn {
@@ -81,6 +80,21 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid #aed4d4; /* Icy Morn */
         }
+        #projects {
+            background: linear-gradient(135deg, #448cb4, #5784ac, #92caf4); /* Atlantic Gull, Off Blue, Pacific Ocean */
+        }
+        #skills {
+            background: linear-gradient(135deg, #92caf4, #aed4d4, #1b4591); /* Pacific Ocean, Icy Morn, Nuit Blanche */
+        }
+        #games {
+            background: linear-gradient(135deg, #1b4591, #32495d, #448cb4); /* Nuit Blanche, Dilly Blue, Atlantic Gull */
+        }
+        #chat {
+            background: linear-gradient(135deg, #5784ac, #aed4d4, #92caf4); /* Off Blue, Icy Morn, Pacific Ocean */
+        }
+        #contact {
+            background: linear-gradient(135deg, #aed4d4, #448cb4, #1b4591); /* Icy Morn, Atlantic Gull, Nuit Blanche */
+        }
         @media (max-width: 768px) {
             .masonry-grid {
                 column-count: 1;
@@ -94,10 +108,10 @@
         <div class="container mx-auto flex flex-col items-center">
             <h1 class="text-4xl font-bold text-white mb-4">My Chrome Underwater Portfolio</h1>
             <nav class="flex space-x-4">
-                <button id="tab-projects" class="tab-active text-white px-4 py-2 rounded-full chrome glossy-btn">Projects</button>
-                <button id="tab-skills" class="text-white px-4 py-2 rounded-full chrome glossy-btn">What I'm Good At</button>
-                <button id="tab-games" class="text-white px-4 py-2 rounded-full chrome glossy-btn">System for Games</button>
-                <button id="tab-chat" class="text-white px-4 py-2 rounded-full chrome glossy-btn">Chatroom</button>
+                <button id="tab-projects" class="tab-active text-white px-4 py-2 rounded-lg chrome glossy-btn">Projects</button>
+                <button id="tab-skills" class="text-white px-4 py-2 rounded-lg chrome glossy-btn">What I'm Good At</button>
+                <button id="tab-games" class="text-white px-4 py-2 rounded-lg chrome glossy-btn">System for Games</button>
+                <button id="tab-chat" class="text-white px-4 py-2 rounded-lg chrome glossy-btn">Chatroom</button>
             </nav>
         </div>
     </header>
@@ -119,11 +133,11 @@
                 GitHub
             </a>
         </div>
-        <button id="close-sidebar" class="glossy-btn text-white px-4 py-2 mt-8 rounded-full">Close</button>
+        <button id="close-sidebar" class="glossy-btn text-white px-4 py-2 mt-8 rounded-lg">Close</button>
     </aside>
 
     <!-- Social Toggle Button -->
-    <button id="open-sidebar" class="fixed top-4 left-4 z-30 glossy-btn text-white p-3 rounded-full">
+    <button id="open-sidebar" class="fixed top-4 left-4 z-30 glossy-btn text-white p-3 rounded-lg">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
@@ -136,7 +150,7 @@
             <div class="container mx-auto text-center px-4">
                 <h2 class="text-6xl font-bold text-white mb-6 animate-pulse">Welcome to the Chrome Future</h2>
                 <p class="text-xl text-white mb-8 max-w-2xl mx-auto">Explore my shiny projects and skills in an underwater chrome world.</p>
-                <button class="glossy-btn text-white px-8 py-4 rounded-full text-lg" onclick="showTab('projects')">Explore Projects</button>
+                <button class="glossy-btn text-white px-8 py-4 rounded-lg text-lg" onclick="showTab('projects')">Explore Projects</button>
             </div>
             <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-#aed4d4 to-transparent"></div> <!-- Icy Morn -->
         </section>
@@ -189,7 +203,7 @@
                         <div id="chat-container" class="chat-container mb-4"></div>
                         <div class="flex space-x-4">
                             <input type="text" id="chat-input" class="w-full p-3 rounded-lg chrome text-white focus:outline-none" placeholder="Type your message...">
-                            <button id="send-message" class="glossy-btn text-white px-6 py-3 rounded-full">Send</button>
+                            <button id="send-message" class="glossy-btn text-white px-6 py-3 rounded-lg">Send</button>
                         </div>
                     </div>
                 </div>
@@ -197,7 +211,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gradient-to-b from-#aed4d4 to-transparent"> <!-- Icy Morn -->
+        <section id="contact" class="py-20"> <!-- Background moved to CSS -->
             <div class="container mx-auto px-4">
                 <h2 class="text-5xl font-bold text-center text-white mb-12">Get in Touch</h2>
                 <div class="chrome max-w-lg mx-auto p-8 rounded-lg">
@@ -214,7 +228,7 @@
                             <label for="message" class="block text-white mb-2">Message</label>
                             <textarea id="message" class="w-full p-3 rounded-lg chrome text-white focus:outline-none" rows="5" placeholder="Your Message"></textarea>
                         </div>
-                        <button id="submit-contact" class="glossy-btn text-white px-6 py-3 rounded-full w-full">Send Message</button>
+                        <button id="submit-contact" class="glossy-btn text-white px-6 py-3 rounded-lg w-full">Send Message</button>
                     </div>
                 </div>
             </div>
