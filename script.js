@@ -46,13 +46,40 @@ function loadPortfolio() {
     });
 }
 
+function loadChatHistory() {
+    const chatContainer = document.getElementById("chat-container");
+    chatContainer.innerHTML = "";
+    const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+    messages.forEach((message) => {
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "chat-message";
+        messageDiv.innerHTML = `<span class="font-bold">Unknown:</span> ${message.text} <span class="text-xs text-gray-400">(${message.timestamp})</span>`;
+        chatContainer.appendChild(messageDiv);
+    });
+    chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to bottom
+}
+
+function saveChatMessage(message, timestamp) {
+    const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+    messages.push({ text: message, timestamp: timestamp });
+    localStorage.setItem("chatMessages", JSON.stringify(messages));
+}
+
 function createChatMessage(message) {
     const chatContainer = document.getElementById("chat-container");
+    const timestamp = new Date().toLocaleTimeString();
     const messageDiv = document.createElement("div");
     messageDiv.className = "chat-message";
-    messageDiv.innerHTML = `<span class="font-bold">Unknown:</span> ${message}`;
+    messageDiv.innerHTML = `<span class="font-bold">Unknown:</span> ${message} <span class="text-xs text-gray-400">(${timestamp})</span>`;
     chatContainer.appendChild(messageDiv);
     chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to bottom
+    saveChatMessage(message, timestamp);
+
+    // Notify user of new message
+    const activeTab = document.querySelector(".tab-content:not(.hidden)").id;
+    if (activeTab !== "chat") {
+        alert("New message in chatroom: " + message);
+    }
 }
 
 function handleChat() {
@@ -91,6 +118,8 @@ function showTab(tabId) {
 
     if (tabId === "projects") {
         loadPortfolio();
+    } else if (tabId === "chat") {
+        loadChatHistory();
     }
 }
 
