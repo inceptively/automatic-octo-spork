@@ -8,10 +8,13 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #448cb4, #92caf4, #1b4591); /* Atlantic Gull, Pacific Ocean, Nuit Blanche */
+            background: linear-gradient(135deg, #448cb4 0%, #92caf4 20%, #1b4591 40%, #5784ac 60%, #aed4d4 80%, #32495d 100%); /* Atlantic Gull, Pacific Ocean, Nuit Blanche, Off Blue, Icy Morn, Dilly Blue */
+            background-attachment: fixed;
+            background-size: 100% 400%;
             color: #e0e0e0;
             overflow-x: hidden;
             position: relative;
+            margin: 0;
         }
         body::before {
             content: '';
@@ -80,41 +83,172 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid #aed4d4; /* Icy Morn */
         }
+        /* Navigation Styling */
+        nav {
+            position: fixed;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            padding: 0.5rem;
+        }
+        /* Wavy Transitions */
+        #home {
+            position: relative;
+            background: transparent;
+        }
+        #content {
+            position: relative;
+            background: transparent;
+        }
         #projects {
-            background: linear-gradient(135deg, #448cb4, #5784ac, #92caf4); /* Atlantic Gull, Off Blue, Pacific Ocean */
+            position: relative;
+            background: transparent;
+            padding-bottom: 40px;
+        }
+        #projects::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            clip-path: url(#wave);
         }
         #skills {
-            background: linear-gradient(135deg, #92caf4, #aed4d4, #1b4591); /* Pacific Ocean, Icy Morn, Nuit Blanche */
+            position: relative;
+            background: transparent;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        #skills::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            clip-path: url(#wave-up);
+        }
+        #skills::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            clip-path: url(#wave);
         }
         #games {
-            background: linear-gradient(135deg, #1b4591, #32495d, #448cb4); /* Nuit Blanche, Dilly Blue, Atlantic Gull */
+            position: relative;
+            background: transparent;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        #games::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            clip-path: url(#wave-up);
+        }
+        #games::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            clip-path: url(#wave);
         }
         #chat {
-            background: linear-gradient(135deg, #5784ac, #aed4d4, #92caf4); /* Off Blue, Icy Morn, Pacific Ocean */
+            position: relative;
+            background: transparent;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        #chat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            clip-path: url(#wave-up);
+        }
+        #chat::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            clip-path: url(#wave);
         }
         #contact {
-            background: linear-gradient(135deg, #aed4d4, #448cb4, #1b4591); /* Icy Morn, Atlantic Gull, Nuit Blanche */
+            position: relative;
+            background: transparent;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            clip-path: url(#wave-up);
+        }
+        .footer-text {
+            text-align: center;
+            color: #e0e0e0;
+            padding: 1rem;
+            font-size: 0.9rem;
         }
         @media (max-width: 768px) {
             .masonry-grid {
                 column-count: 1;
             }
+            nav {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="chrome fixed w-full top-0 z-10 p-4">
-        <div class="container mx-auto flex flex-col items-center">
-            <h1 class="text-4xl font-bold text-white mb-4">My Chrome Underwater Portfolio</h1>
-            <nav class="flex space-x-4">
-                <button id="tab-projects" class="tab-active text-white px-4 py-2 rounded-lg chrome glossy-btn">Projects</button>
-                <button id="tab-skills" class="text-white px-4 py-2 rounded-lg chrome glossy-btn">What I'm Good At</button>
-                <button id="tab-games" class="text-white px-4 py-2 rounded-lg chrome glossy-btn">System for Games</button>
-                <button id="tab-chat" class="text-white px-4 py-2 rounded-lg chrome glossy-btn">Chatroom</button>
-            </nav>
-        </div>
-    </header>
+    <!-- SVG for Wavy Transition -->
+    <svg style="display: none;">
+        <defs>
+            <clipPath id="wave">
+                <path d="M0,0 Q50,40 100,0 T200,0 T300,0 T400,0 T500,0 T600,0 T700,0 T800,0 T900,0 T1000,0 V40 H0 Z" />
+            </clipPath>
+            <clipPath id="wave-up">
+                <path d="M0,40 Q50,0 100,40 T200,40 T300,40 T400,40 T500,40 T600,40 T700,40 T800,40 T900,40 T1000,40 V0 H0 Z" />
+            </clipPath>
+        </defs>
+    </svg>
+
+    <!-- Navigation -->
+    <nav class="flex space-x-4">
+        <button id="tab-projects" class="tab-active text-white px-4 py-2 rounded-lg glossy-btn">Projects</button>
+        <button id="tab-skills" class="text-white px-4 py-2 rounded-lg glossy-btn">What I'm Good At</button>
+        <button id="tab-games" class="text-white px-4 py-2 rounded-lg glossy-btn">System for Games</button>
+        <button id="tab-chat" class="text-white px-4 py-2 rounded-lg glossy-btn">Chatroom</button>
+    </nav>
 
     <!-- Social Sidebar -->
     <aside id="sidebar" class="sidebar chrome fixed top-0 left-0 h-full w-64 p-6 z-20">
@@ -144,7 +278,7 @@
     </button>
 
     <!-- Main Content -->
-    <main class="flex-grow pt-32">
+    <main class="flex-grow pt-24">
         <!-- Hero Section -->
         <section id="home" class="min-h-screen flex items-center justify-center gradient-bg relative">
             <div class="container mx-auto text-center px-4">
@@ -156,7 +290,7 @@
         </section>
 
         <!-- Tab Content -->
-        <section id="content" class="py-20 relative">
+        <section id="content" class="relative">
             <div class="container mx-auto px-4">
                 <!-- Projects Tab -->
                 <div id="projects" class="tab-content">
@@ -211,7 +345,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20"> <!-- Background moved to CSS -->
+        <section id="contact" class="py-20">
             <div class="container mx-auto px-4">
                 <h2 class="text-5xl font-bold text-center text-white mb-12">Get in Touch</h2>
                 <div class="chrome max-w-lg mx-auto p-8 rounded-lg">
@@ -234,10 +368,10 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="chrome py-6 text-center text-white">
+        <!-- Simplified Footer -->
+        <div class="footer-text">
             <p>© 2025 My Portfolio. All rights reserved.</p>
-        </footer>
+        </div>
     </main>
 
     <script src="/script.js"></script>
